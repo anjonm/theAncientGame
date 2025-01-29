@@ -1,0 +1,203 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+html{
+    box-sizing: border-box;
+    font-family: "Tiny5", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#endGame{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background-color: black;
+    opacity: 0.8;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+#endGame>div{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#endGame>div>p:first-child{
+    font-size: 100px;
+}
+
+#endGame>div>p:nth-child(2){
+    font-size:60px
+}
+
+#finalScore{
+    font-size: 100px;
+    /* font */
+}
+
+#endGame>div>p:last-child{
+    font-size: 40px;
+}
+
+#endGame>div>p:last-child:hover{
+    cursor: pointer;
+}
+
+#endGame>div p{
+    color: white;
+}
+
+#bg {
+    position: relative;
+    width: 1250px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./others/bg.png');
+}
+
+.sides{
+    width: 1050px;
+    height: 100px;
+}
+
+.sides:first-child{
+    display: flex;
+}
+
+.sides:first-child>ul{
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+#title{
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+#title li{
+    font-size: 40px;
+}
+
+#title li:first-child, #title li:last-child{
+    align-self: flex-end;
+}
+
+#title li:last-child{
+    transform: scaleX(-1);
+}
+
+#title div{
+    background-image: url('./others/frog.png');
+    background-size: cover;
+    width: 75px;
+    height: 60px;
+}
+
+#scime, #diafe{
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#scime li, #diafe li{
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+}
+
+#bg>div:last-child{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 125px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#bg>div:last-child>div{
+    height: 100%;
+    width: 188px;
+}
+
+#bg>div:last-child>div:first-child{
+    background-image: url('./others/fence.png');
+}
+
+#bg>div:last-child>div:last-child{
+    background-image: url('./others/fence.png');
+    transform: scaleX(-1);
+}
+
+#playarea {
+    position: relative;
+    width: 1050px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#playarea+.sides{
+    width: 70%;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.characters{
+    z-index: 1;
+}
+
+.obstacles, .door{
+    width: 50px;
+    height: 50px;
+}
+
+.characters, ul>li>div,.door{
+    background-size: cover;
+}
+
+.diamond, #diafe>li:first-child>div, .key,.coin, #scime>li:first-child>div{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: center;
+}
+
+.spawnpoint{
+    width: 45px;
+    height: 53px;
+}
+
+.coin{
+    width: 20px;
+    height: 20px;
+}
+
+.characters, .diamond, .key, ul>li>div{
+    width: 40px;
+    height: 40px;
+}
+
+.characters, .obstacles, .spawnpoint, .diamond,.key,.door,.coin{
+    position: absolute;
+}
