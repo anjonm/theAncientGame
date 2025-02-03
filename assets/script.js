@@ -322,12 +322,16 @@ function isCollide(id) {
 				(xDiff >= 0 && xDiff <= 5 && yDiff >= 10 && yDiff <= 75) ||
 				(xDiff >= 70 && xDiff <= 75 && yDiff >= 10 && yDiff <= 75)
 			) {
-				if (div.getAttribute('id') === 'key') {
+				if (
+					div.getAttribute('id') === 'key' &&
+					div.getAttribute('class') === 'key'
+				) {
 					charInfo[id].score += 5000;
 					initialGameInfo();
 					div.style.display = 'none';
 					const door = document.querySelector('#door');
 					door.classList.remove('coin');
+					door.classList.remove('hide');
 					door.classList.add('door');
 					door.style.backgroundImage = 'url("./assets/others/door.png"';
 					door.style.left = door.style.left.slice(-0, -2) - 15 + 'px';
@@ -335,8 +339,9 @@ function isCollide(id) {
 				} else if (div.getAttribute('class') === 'coin') {
 					charInfo[id].score += 20;
 					initialGameInfo();
-					div.remove();
+					div.classList.add('hide');
 				} else if (div.getAttribute('id') === 'door') {
+					charInfo[id].score += 2000;
 					endGame();
 				} else {
 					charInfo[id].dias += 1;
@@ -393,6 +398,7 @@ function initialGameInfo() {
 	if (charInfo.p1.dias == 8) {
 		const key = document.querySelector('#key');
 		key.classList.remove('coin');
+		key.classList.remove('hide');
 		key.classList.add('key');
 		key.style.backgroundImage = 'url("./assets/others/key.png")';
 		key.style.left = `5px`;
@@ -456,7 +462,7 @@ document.addEventListener('keydown', function (e) {
 			// Check if Collided to obstacles
 			isCollide('p1');
 			// Move Up
-			if (e.code === 'KeyW') {
+			if (e.code === 'KeyW' || e.code === 'ArrowUp') {
 				// Stop Moving Upward if collided to obstacles or top border reach
 				if (charInfo.p1.yValue <= 0 || charInfo.p1.moveStop.up === true) {
 					charInfo.p1.direction = 'up';
@@ -466,7 +472,7 @@ document.addEventListener('keydown', function (e) {
 					// resetMoveStop('p1');
 				}
 				// Move Down
-			} else if (e.code === 'KeyS') {
+			} else if (e.code === 'KeyS' || e.code === 'ArrowDown') {
 				// Stop Moving Upward if collided to obstacles or top border reach
 				if (
 					charInfo.p1.yValue + prota.height >= playareaDimension.height ||
@@ -478,7 +484,7 @@ document.addEventListener('keydown', function (e) {
 					charInfo.p1.direction = 'down';
 					// resetMoveStop('p1');
 				}
-			} else if (e.code === 'KeyA') {
+			} else if (e.code === 'KeyA' || e.code === 'ArrowLeft') {
 				if (charInfo.p1.xValue <= 0 || charInfo.p1.moveStop.left === true) {
 					charInfo.p1.direction = 'left';
 				} else {
@@ -486,7 +492,7 @@ document.addEventListener('keydown', function (e) {
 					charInfo.p1.direction = 'left';
 					// resetMoveStop('p1');
 				}
-			} else if (e.code === 'KeyD') {
+			} else if (e.code === 'KeyD' || e.code === 'ArrowRight') {
 				if (
 					charInfo.p1.xValue + prota.width >= playareaDimension.width ||
 					charInfo.p1.moveStop.right === true

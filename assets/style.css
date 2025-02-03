@@ -201,3 +201,8 @@ body{
 .characters, .obstacles, .spawnpoint, .diamond,.key,.door,.coin{
     position: absolute;
 }
+
+.hide{
+    width: 0;
+    display: none;
+}
