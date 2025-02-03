@@ -405,6 +405,14 @@ function initialGameInfo() {
 	}
 }
 
+function gameIntro() {
+	const playGame = document.querySelector('#endGame');
+	restart.onclick = () => {
+		playGame.style.display = 'none';
+		gameInitialize();
+	};
+}
+
 function gameInitialize() {
 	createEnvironment();
 	initailPos();
@@ -458,13 +466,17 @@ function endGame(status) {
 		endStatus.innerText = 'YOU DIED!';
 	}
 	displayEndTime.innerText = 'Remaining Time: ' + endTime.innerHTML.slice(0, 8);
+	displayEndTime.style.fontSize = '60px';
+	finalScore.classList.remove('hide');
 	finalScore.innerText = 'Final Score: ' + charInfo.p1.score;
+	restart.innerText = 'Play Again';
 	endGame.style.display = 'flex';
+	restart.style.fontSize = '40px';
+	restart.onclick = () => {
+		endGame.style.display = 'none';
+		gameInitialize();
+	};
 }
-
-restart.addEventListener('click', () => {
-	location.reload();
-});
 
 document.addEventListener('keydown', function (e) {
 	const prota = document.querySelector('#p1').getBoundingClientRect();
@@ -522,4 +534,4 @@ document.addEventListener('keydown', function (e) {
 	}
 });
 
-gameInitialize();
+gameIntro();

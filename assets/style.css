@@ -25,34 +25,32 @@ body{
     z-index: 2;
     background-color: black;
     opacity: 0.8;
-    align-items: center;
+    display: flex;
     justify-content: center;
-    display: none;
 }
 
 #endGame>div{
-    height: 70vh;
+    height: 100vmin;
+    width: 60%;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
-#endStatus{
+#endStatus, #finalScore, #playAgain{
     font-size: 100px;
 }
 
 #time{
-    font-size:60px
-}
-
-#finalScore{
-    font-size: 100px;
-    /* font */
+    font-size:30px
+    /* 60 */
 }
 
 #playAgain{
-    font-size: 40px;
+    font-size: 100px;
+    /* 40 */
 }
 
 #playAgain:hover{
