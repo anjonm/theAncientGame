@@ -38,11 +38,11 @@ body{
     align-items: center;
 }
 
-#endGame>div>p:first-child{
+#endStatus{
     font-size: 100px;
 }
 
-#endGame>div>p:nth-child(2){
+#time{
     font-size:60px
 }
 
@@ -51,11 +51,11 @@ body{
     /* font */
 }
 
-#endGame>div>p:last-child{
+#playAgain{
     font-size: 40px;
 }
 
-#endGame>div>p:last-child:hover{
+#playAgain:hover{
     cursor: pointer;
 }
 

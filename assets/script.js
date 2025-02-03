@@ -124,7 +124,7 @@ function coinFlip() {
 
 function initailPos() {
 	const characters = document.querySelectorAll('.characters');
-	time.children[1].innerText = '00:00:000';
+	time.children[1].innerText = '00:00:00';
 
 	for (let char of characters) {
 		let design = Math.floor(Math.random() * 3) + 1;
@@ -342,7 +342,7 @@ function isCollide(id) {
 					div.classList.add('hide');
 				} else if (div.getAttribute('id') === 'door') {
 					charInfo[id].score += 2000;
-					endGame();
+					endGame('win');
 				} else {
 					charInfo[id].dias += 1;
 					charInfo[id].score += 1000;
@@ -379,7 +379,7 @@ function isCollide(id) {
 function respawn(id) {
 	charInfo[id].life -= 1;
 	if (charInfo[id].life === 0) {
-		endGame();
+		endGame('died');
 	} else {
 		charInfo[id].xValue = charInfo[id].respawn.x;
 		charInfo[id].yValue = charInfo[id].respawn.y;
@@ -430,23 +430,35 @@ function startTimer() {
 		if (totalTime <= 0) {
 			clearInterval(timeInterval);
 			timerDisplay.textContent = '00:00:00';
-			endGame();
+			endGame('timeEnd');
 		} else {
 			totalTime -= 10;
 		}
 	}, 10);
 }
 
-function endGame() {
+function endGame(status) {
+	const endStatus = document.querySelector('#endStatus');
+	const displayEndTime = document.querySelector('#time');
 	const finalScore = document.querySelector('#finalScore');
 	const endGame = document.querySelector('#endGame');
 	const characters = document.querySelectorAll('.characters');
+	const endTime = document.querySelector('#scime>li p');
+
 	for (let character of characters) {
 		character.remove();
 	}
 	clearInterval(timeInterval);
 	timeInterval = null;
-	finalScore.innerText = charInfo.p1.score;
+	if (status === 'win') {
+		endStatus.innerText = 'YOU WON!';
+	} else if (status === 'timeEnd') {
+		endStatus.innerText = 'YOU LOSE!';
+	} else if (status === 'died') {
+		endStatus.innerText = 'YOU DIED!';
+	}
+	displayEndTime.innerText = 'Remaining Time: ' + endTime.innerHTML.slice(0, 8);
+	finalScore.innerText = 'Final Score: ' + charInfo.p1.score;
 	endGame.style.display = 'flex';
 }
 
